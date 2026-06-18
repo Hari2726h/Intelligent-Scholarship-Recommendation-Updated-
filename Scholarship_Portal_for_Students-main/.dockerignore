@@ -1,0 +1,36 @@
+# Build artifacts
+target/
+!target/*.jar
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Logs
+logs/
+*.log
+
+# Maven wrapper (we copy these explicitly)
+# Documentation
+*.md
+LICENSE
+
+# Uploads (runtime data)
+uploads/
+
+# Environment files
+.env
+.env.example

@@ -1,0 +1,124 @@
+/* Scholarship Comparison Styles */
+
+.comparison-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.comparison-table-wrapper {
+    overflow-x: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: var(--card-bg, #fff);
+}
+
+.comparison-table {
+    margin-bottom: 0;
+    min-width: 800px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    vertical-align: middle;
+    padding: 1rem;
+}
+
+.feature-column {
+    width: 200px;
+    background: var(--primary-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+    color: white;
+    position: sticky;
+    left: 0;
+    z-index: 10;
+}
+
+.feature-label {
+    font-weight: 600;
+    background: var(--bg-light, #f8f9fa);
+    position: sticky;
+    left: 0;
+    z-index: 5;
+}
+
+.scholarship-column {
+    min-width: 250px;
+    background: var(--card-bg, #fff);
+}
+
+.scholarship-header {
+    text-align: center;
+}
+
+.scholarship-header h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-primary, #2d3748);
+}
+
+.comparison-value {
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.highlight-row {
+    background: var(--highlight-bg, #fff3cd);
+    font-weight: 600;
+}
+
+.highlight-row td {
+    font-size: 1.1rem;
+    color: var(--primary-color, #667eea);
+}
+
+.description-cell {
+    max-width: 250px;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .comparison-table-wrapper {
+        box-shadow: none;
+    }
+    
+    .comparison-table {
+        font-size: 10px;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+        padding: 0.5rem;
+    }
+}
+
+/* Dark Theme */
+.dark-theme .comparison-table-wrapper {
+    background: #1e293b;
+}
+
+.dark-theme .comparison-table {
+    color: #e2e8f0;
+}
+
+.dark-theme .comparison-table tbody tr:hover {
+    background: #334155;
+}
+
+.dark-theme .feature-label {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+.dark-theme .scholarship-header h5 {
+    color: #f1f5f9;
+}
+
+.dark-theme .highlight-row {
+    background: #422006;
+}

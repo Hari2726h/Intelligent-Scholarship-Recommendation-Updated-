@@ -1,0 +1,142 @@
+/* Quick Stats Styles */
+
+.quick-stats-container {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card .card-body {
+    padding: 1.5rem;
+}
+
+.stat-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    opacity: 0.2;
+}
+
+.stat-content h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.stat-content p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+.stat-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 1rem;
+}
+
+.stat-breakdown .badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem;
+}
+
+/* Individual Card Colors */
+.total-apps {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.success-rate {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.total-value {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.nearest-deadline {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+}
+
+.insights-card {
+    border-radius: 12px;
+    border: 2px solid var(--border-color, #e2e8f0);
+}
+
+.insights-card h6 {
+    font-weight: 600;
+    color: var(--text-primary, #2d3748);
+}
+
+/* Progress Bar Customization */
+.progress {
+    height: 8px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.progress-bar {
+    border-radius: 10px;
+}
+
+/* Dark Theme */
+.dark-theme .insights-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+.dark-theme .insights-card h6 {
+    color: #f1f5f9;
+}
+
+.dark-theme .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stat-content h3 {
+        font-size: 2rem;
+    }
+
+    .stat-icon {
+        display: none;
+    }
+
+    .stat-breakdown {
+        flex-direction: column;
+    }
+
+    .stat-breakdown .badge {
+        width: 100%;
+        text-align: center;
+    }
+}

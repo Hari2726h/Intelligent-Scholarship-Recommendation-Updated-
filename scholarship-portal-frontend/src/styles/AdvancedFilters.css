@@ -1,0 +1,66 @@
+/* Advanced Filters Styles */
+
+.advanced-filters-card {
+    border-radius: 10px;
+    border: 2px solid var(--border-color, #e2e8f0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.advanced-filters-card .card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+}
+
+.saved-filters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.saved-filter-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.saved-filter-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.4);
+}
+
+.save-filter-section {
+    background: var(--bg-light, #f8f9fa);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Dark Theme */
+.dark-theme .advanced-filters-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+.dark-theme .save-filter-section {
+    background: #0f172a;
+}
+
+.dark-theme .form-control,
+.dark-theme .form-select {
+    background: #334155;
+    border-color: #475569;
+    color: #e2e8f0;
+}
+
+.dark-theme .form-control:focus,
+.dark-theme .form-select:focus {
+    background: #475569;
+    border-color: #667eea;
+    color: #e2e8f0;
+}
+
+.dark-theme .form-label {
+    color: #cbd5e1;
+}

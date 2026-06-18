@@ -1,0 +1,69 @@
+.application-timeline {
+    position: relative;
+    padding-left: 50px;
+}
+
+.application-timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #e0e0e0, #f0f0f0);
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -38px;
+    background: white;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #dee2e6;
+    margin-left: 10px;
+}
+
+.timeline-success .timeline-content {
+    border-left-color: #28a745;
+    background: #d4edda;
+}
+
+.timeline-danger .timeline-content {
+    border-left-color: #dc3545;
+    background: #f8d7da;
+}
+
+.timeline-warning .timeline-content {
+    border-left-color: #ffc107;
+    background: #fff3cd;
+}
+
+.timeline-info .timeline-content {
+    border-left-color: #17a2b8;
+    background: #d1ecf1;
+}
+
+.timeline-content h6 {
+    color: #333;
+    font-weight: 600;
+}
+
+.timeline-content p {
+    color: #666;
+    font-size: 0.9rem;
+}
