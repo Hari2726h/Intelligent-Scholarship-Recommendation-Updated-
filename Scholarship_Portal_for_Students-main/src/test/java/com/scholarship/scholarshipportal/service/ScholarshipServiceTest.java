@@ -46,6 +46,12 @@ class ScholarshipServiceTest {
     @Mock
     private AuditService auditService;
 
+    @Mock
+    private EventProducerService eventProducerService;
+
+    @Mock
+    private RedisCacheService redisCacheService;
+
     @InjectMocks
     private ScholarshipService scholarshipService;
 

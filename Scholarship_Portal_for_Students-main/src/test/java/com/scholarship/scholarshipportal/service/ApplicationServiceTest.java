@@ -48,7 +48,13 @@ class ApplicationServiceTest {
     private AuditService auditService;
 
     @Mock
+    private EventProducerService eventProducerService;
+
+    @Mock
     private EmailService emailService;
+
+    @Mock
+    private RedisCacheService redisCacheService;
 
     @InjectMocks
     private ApplicationService applicationService;
@@ -96,6 +102,7 @@ class ApplicationServiceTest {
         when(userRepository.findByUsername("teststudent")).thenReturn(Optional.of(testUser));
         when(studentRepository.findByUser(testUser)).thenReturn(Optional.of(testStudent));
         when(scholarshipRepository.findById(1L)).thenReturn(Optional.of(testScholarship));
+        when(redisCacheService.acquireLock(anyString(), anyLong())).thenReturn(true);
         when(applicationRepository.existsByStudentAndScholarship(testStudent, testScholarship)).thenReturn(false);
         when(applicationRepository.save(any(Application.class))).thenReturn(testApplication);
 
@@ -107,7 +114,7 @@ class ApplicationServiceTest {
         assertEquals(Status.PENDING, result.getStatus());
         verify(applicationRepository, times(1)).save(any(Application.class));
         verify(historyRepository, times(1)).save(any(ApplicationStatusHistory.class));
-        verify(auditService, times(1)).logAction(anyString(), anyString(), anyString(), any(), anyString());
+        verify(eventProducerService, times(1)).publishApplicationSubmitted(any());
     }
 
     @Test
@@ -116,6 +123,7 @@ class ApplicationServiceTest {
         when(userRepository.findByUsername("teststudent")).thenReturn(Optional.of(testUser));
         when(studentRepository.findByUser(testUser)).thenReturn(Optional.of(testStudent));
         when(scholarshipRepository.findById(1L)).thenReturn(Optional.of(testScholarship));
+        when(redisCacheService.acquireLock(anyString(), anyLong())).thenReturn(true);
         when(applicationRepository.existsByStudentAndScholarship(testStudent, testScholarship)).thenReturn(true);
 
         // Act & Assert

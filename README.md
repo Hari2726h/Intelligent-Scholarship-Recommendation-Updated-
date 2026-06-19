@@ -15,9 +15,11 @@
 A comprehensive **Scholarship Management System** built with modern enterprise architecture:
 - ✅ **Backend**: Spring Boot 3.4.2 + Spring Security + JWT Authentication
 - ✅ **Frontend**: React 19 + React Router 7 + Bootstrap 5 + Recharts
-- ✅ **Database**: MySQL 8 with JPA/Hibernate ORM
-- ✅ **Features**: 150+ enterprise features including dark mode, analytics, file uploads, audit logs
-- ✅ **Deployment**: Docker-ready with production configurations
+- ✅ **Database & Cache**: MySQL 8 with JPA/Hibernate ORM + Embedded Redis
+- ✅ **Event-Driven**: Embedded Kafka (KRaft) for async processing with DLQ and Idempotency
+- ✅ **Features**: 150+ enterprise features including dark mode, analytics, file uploads, audit logs, saved scholarships
+- ✅ **Observability**: Spring Boot Actuator + Prometheus metrics
+- ✅ **Deployment**: Docker-ready with production configurations and zero-dependency local mode
 
 ---
 
@@ -44,22 +46,27 @@ A comprehensive **Scholarship Management System** built with modern enterprise a
 - **User Management**: Role-based access (Admin/Student) with JWT authentication
 - **Scholarship Management**: CRUD operations with soft delete support
 - **Application Processing**: Submit, review, approve/reject applications
+- **Saved Scholarships**: Bookmark/save scholarships for later with robust backend management
 - **Eligibility Engine**: Advanced filtering based on GPA, income, category
-- **Notifications**: Real-time notifications for status updates
+- **Notifications**: Real-time asynchronous notifications for status updates via Kafka
 - **File Uploads**: Document management with validation (5MB limit, multiple formats)
 
 ### 🏢 **Enterprise Features**
 
 #### Backend Enhancements
-- ✅ **Exception Handling**: Global exception handler with structured error responses
-- ✅ **Logging & Monitoring**: SLF4J logging at INFO/WARN/ERROR levels
-- ✅ **Audit Trail**: Complete audit log for all critical operations
+- ✅ **Zero-Dependency Local Infra**: Programmatic bootstrapping of Embedded Kafka (KRaft) and Embedded Redis (`LocalInfraBootstrap`) for seamless local development
+- ✅ **Advanced Event-Driven Architecture**: Kafka consumers with Dead Letter Queues (DLQ) and Idempotency for reliable event processing
+- ✅ **Distributed Caching & Concurrency**: Redis-backed distributed locking and rate-limiting to prevent API abuse and race conditions
+- ✅ **Observability**: Spring Boot Actuator and Prometheus endpoints for comprehensive system monitoring
+- ✅ **Exception Handling**: Global exception handler (`@RestControllerAdvice`) with structured error responses and Bean Validation
+- ✅ **Logging & Monitoring**: SLF4J logging at INFO/WARN/ERROR levels with correlation IDs
+- ✅ **Audit Trail**: Complete Kafka-based audit log for all critical operations
 - ✅ **Soft Delete**: Data preservation with isDeleted flag
 - ✅ **Email Notifications**: Service layer for welcome/approval/rejection emails (console mode)
 - ✅ **Application History**: Track all status changes with timestamps
 - ✅ **Analytics API**: Comprehensive admin dashboard with statistics
-- ✅ **Database Optimization**: Indexed queries, repository enhancements
-- ✅ **Production Config**: Environment-based configuration with secrets
+- ✅ **Database Optimization**: Indexed queries, repository enhancements, API response wrappers
+- ✅ **Production Config**: Externalized environment-based configuration with `.env` secrets
 
 #### Frontend Enhancements
 - ✅ **Error Boundary**: React error boundary for graceful error handling
@@ -85,8 +92,11 @@ A comprehensive **Scholarship Management System** built with modern enterprise a
 | **Spring Security** | 6.x | Authentication & Authorization |
 | **Spring Data JPA** | 3.x | ORM & Database Access |
 | **Hibernate** | 6.x | JPA Implementation |
+| **Kafka (Embedded)** | 3.x | Async Messaging & Event-Driven Architecture |
+| **Redis (Embedded)** | 7.x | Caching, Rate Limiting & Distributed Locks |
 | **JWT** | io.jsonwebtoken | Token-based Authentication |
 | **MySQL** | 8.0+ | Relational Database |
+| **Actuator & Prometheus**| Latest | Health Checks & Metrics |
 | **SLF4J/Logback** | Latest | Logging Framework |
 | **Maven** | 3.9+ | Build Tool |
 
