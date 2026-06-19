@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getMyApplications } from '../services/applicationService';
 import { toast } from 'react-toastify';
-import { Table, Badge, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Loader from '../components/Loader';
 import ApplicationTimeline from '../components/ApplicationTimeline';
 
-import { useNavigate } from 'react-router-dom';
+
 import { FaCheckCircle, FaHourglassHalf, FaTimesCircle, FaExternalLinkAlt, FaClock, FaDownload, FaHistory } from 'react-icons/fa';
 import { exportApplicationsToCSV, exportApplicationsToPDF } from '../utils/exportUtils';
 
@@ -15,7 +15,7 @@ const MyApplications = () => {
   const [filter, setFilter] = useState('ALL');
   const [selectedApplication, setSelectedApplication] = useState(null);
   const [showTimeline, setShowTimeline] = useState(false);
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetchApplications();

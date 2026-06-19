@@ -10,6 +10,8 @@ export const getProfileStrength = async () => {
     return response.data;
 };
 
-export default {
+const profileService = {
     getProfileStrength,
 };
+
+export default profileService;

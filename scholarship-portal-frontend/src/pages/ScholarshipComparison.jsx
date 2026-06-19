@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Container, Row, Col, Table, Button, Badge, Card, Spinner } from 'react-bootstrap';
+import { Container, Table, Button, Badge, Card, Spinner } from 'react-bootstrap';
 import { FaCheckCircle, FaTimesCircle, FaArrowLeft, FaPrint, FaDownload, FaRobot } from 'react-icons/fa';
 import API from '../services/api';
 import { toast } from 'react-toastify';
@@ -48,7 +48,7 @@ const ScholarshipComparison = () => {
         }
 
         fetchScholarships(ids);
-    }, [location]);
+    }, [location, navigate]);
 
     const fetchScholarships = async (ids) => {
         try {

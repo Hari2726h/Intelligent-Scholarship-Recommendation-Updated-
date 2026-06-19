@@ -15,8 +15,6 @@ const DeadlineCalendar = () => {
     const navigate = useNavigate();
     const [deadlines, setDeadlines] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
-    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
     useEffect(() => {
         fetchDeadlines();

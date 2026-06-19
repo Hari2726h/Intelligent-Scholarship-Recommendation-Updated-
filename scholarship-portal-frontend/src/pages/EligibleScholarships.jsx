@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getEligibleScholarships } from '../services/scholarshipService';
 import { applyForScholarship } from '../services/applicationService';
 import { toast } from 'react-toastify';
-import { Table, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import Loader from '../components/Loader';
 import { enrichScholarshipCollection, paginateItems } from '../utils/scholarshipUtils';

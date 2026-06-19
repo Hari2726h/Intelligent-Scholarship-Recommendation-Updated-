@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { getMyNotifications, markNotificationAsRead, markAllNotificationsAsRead, deleteNotification } from '../services/notificationService';
+import { getMyNotifications, markAllNotificationsAsRead, deleteNotification } from '../services/notificationService';
 import { toast } from 'react-toastify';
 import { FaBell, FaCheckCircle, FaClock, FaGraduationCap, FaInfoCircle, FaExternalLinkAlt, FaTrash, FaRobot } from 'react-icons/fa';
 import { getNotificationDigest } from '../services/geminiService';
@@ -31,11 +31,9 @@ const Notifications = () => {
         }
     };
 
-    useEffect(() => {
-        fetchNotifications();
-    }, []);
 
-    const fetchNotifications = async () => {
+
+    const fetchNotifications = React.useCallback(async () => {
         try {
             if (isCollege) {
                 const res = await getGroupedCollegeNotifications();
@@ -54,16 +52,13 @@ const Notifications = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [isCollege]);
 
-    const handleMarkAsRead = async (id) => {
-        try {
-            await markNotificationAsRead(id);
-            setNotifications(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
-        } catch (err) {
-            toast.error("Failed to mark as read");
-        }
-    };
+    useEffect(() => {
+        fetchNotifications();
+    }, [fetchNotifications]);
+
+
 
     const handleMarkAllAsRead = async () => {
         try {

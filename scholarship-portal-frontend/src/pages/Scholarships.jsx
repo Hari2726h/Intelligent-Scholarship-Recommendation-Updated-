@@ -4,11 +4,10 @@ import { getAllScholarships, createScholarship, deleteScholarship } from '../ser
 import { applyForScholarship } from '../services/applicationService';
 import { toast } from 'react-toastify';
 import { Button, Form, Modal, Row, Col, Badge, Card, Spinner } from 'react-bootstrap';
-import { FaCalendar, FaMoneyBillWave, FaGraduationCap, FaUsers, FaTrash, FaPlus, FaArrowRight, FaExternalLinkAlt, FaBalanceScale, FaDownload, FaRobot } from 'react-icons/fa';
+import { FaCalendar, FaMoneyBillWave, FaGraduationCap, FaTrash, FaPlus, FaArrowRight, FaExternalLinkAlt, FaRobot } from 'react-icons/fa';
 import { parseNaturalLanguageSearch } from '../services/geminiService';
 import Loader from '../components/Loader';
-import AdvancedFilters from '../components/AdvancedFilters';
-import { exportScholarshipsToCSV, exportScholarshipsToPDF } from '../utils/exportUtils';
+
 import { enrichScholarshipCollection } from '../utils/scholarshipUtils';
 
 const Scholarships = ({ isAdminView }) => {
@@ -18,8 +17,7 @@ const Scholarships = ({ isAdminView }) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [selectedForComparison, setSelectedForComparison] = useState([]);
-  const [savedFilters, setSavedFilters] = useState([]);
+
   const [aiSearchQuery, setAiSearchQuery] = useState('');
   const [aiSearchLoading, setAiSearchLoading] = useState(false);
 
@@ -34,13 +32,7 @@ const Scholarships = ({ isAdminView }) => {
     fetchScholarships(page);
   }, [page]);
 
-  useEffect(() => {
-    // Load saved filters from localStorage
-    const saved = localStorage.getItem('savedScholarshipFilters');
-    if (saved) {
-      setSavedFilters(JSON.parse(saved));
-    }
-  }, []);
+
 
   useEffect(() => {
     setFilteredScholarships(scholarships);
@@ -122,34 +114,7 @@ const Scholarships = ({ isAdminView }) => {
     }
   };
 
-  const handleSaveFilter = (filterData) => {
-    const newFilters = [...savedFilters, filterData];
-    setSavedFilters(newFilters);
-    localStorage.setItem('savedScholarshipFilters', JSON.stringify(newFilters));
-    toast.success(`Filter "${filterData.name}" saved!`);
-  };
 
-  const toggleComparisonSelection = (id) => {
-    setSelectedForComparison(prev => {
-      if (prev.includes(id)) {
-        return prev.filter(sId => sId !== id);
-      } else {
-        if (prev.length >= 5) {
-          toast.warning('You can compare up to 5 scholarships at a time');
-          return prev;
-        }
-        return [...prev, id];
-      }
-    });
-  };
-
-  const handleCompare = () => {
-    if (selectedForComparison.length < 2) {
-      toast.error('Please select at least 2 scholarships to compare');
-      return;
-    }
-    navigate(`/scholarships/compare?ids=${selectedForComparison.join(',')}`);
-  };
 
   const handleApply = async (id) => {
     try {
@@ -204,14 +169,7 @@ const Scholarships = ({ isAdminView }) => {
     navigate(`/scholarships/${scholarshipId}`);
   };
 
-  const truncateText = (text, lines = 2) => {
-    if (!text) return '';
-    const words = text.split(' ');
-    const maxWords = lines * 15; // Approximately 15 words per line
-    return words.length > maxWords
-      ? words.slice(0, maxWords).join(' ') + '...'
-      : text;
-  };
+
 
   if (loading && page === 0) return <Loader />;
 

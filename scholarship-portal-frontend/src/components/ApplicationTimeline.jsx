@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Timeline } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { FaCheckCircle, FaClock, FaTimesCircle, FaCircle } from 'react-icons/fa';
 import '../styles/ApplicationTimeline.css';
 

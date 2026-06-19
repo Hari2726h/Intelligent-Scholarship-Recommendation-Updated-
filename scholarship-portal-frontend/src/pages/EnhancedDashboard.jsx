@@ -16,8 +16,6 @@ import {
   FaHourglassHalf,
   FaTimesCircle,
   FaUserCheck,
-  FaRobot,
-  FaBookmark,
   FaArrowRight,
   FaChartLine,
   FaUniversity,
@@ -47,11 +45,9 @@ const EnhancedDashboard = () => {
   const [scholarships, setScholarships] = useState([]);
   const [collegeStats, setCollegeStats] = useState(null);
 
-  useEffect(() => {
-    loadDashboardData();
-  }, [isAdmin]);
 
-  const loadDashboardData = async () => {
+
+  const loadDashboardData = React.useCallback(async () => {
     try {
       setLoading(true);
 
@@ -132,7 +128,11 @@ const EnhancedDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [isAdmin, isCollege]);
+
+  useEffect(() => {
+    loadDashboardData();
+  }, [loadDashboardData]);
 
   const StatCard = ({ title, count, icon, gradientClass, onClick }) => {
     const [displayValue, setDisplayValue] = useState(0);

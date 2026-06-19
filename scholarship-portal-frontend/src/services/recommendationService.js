@@ -40,7 +40,7 @@ export const isScholarshipBookmarked = async (scholarshipId) => {
     return response.data;
 };
 
-export default {
+const recommendationService = {
     getRecommendations,
     getTopRecommendations,
     bookmarkScholarship,
@@ -48,3 +48,5 @@ export default {
     getBookmarkedScholarships,
     isScholarshipBookmarked,
 };
+
+export default recommendationService;
