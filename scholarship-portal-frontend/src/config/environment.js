@@ -8,6 +8,9 @@ const ENV_CONFIG = {
   },
   production: {
     apiUrl: process.env.REACT_APP_API_URL || 'https://api.yourdomain.com',
+  },
+  test: {
+    apiUrl: 'http://localhost:8080',
   }
 };
 
