@@ -11,3 +11,8 @@ build/
 
 # OS
 .DS_Store
+
+# Python Environment
+venv/
+.venv/
+__pycache__/

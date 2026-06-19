@@ -171,6 +171,36 @@ services:
       retries: 5
       start_period: 120s
 
+  # ====== Scraper Service ======
+  scraper:
+    build:
+      context: ./scholarship-scraper
+      dockerfile: Dockerfile
+    container_name: scholarship-scraper
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    environment:
+      # Database
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: ${DB_USERNAME:-scholaruser}
+      DB_PASSWORD: ${DB_PASSWORD:-scholarpass}
+      DB_NAME: scholarship_portal
+      # API
+      API_BASE_URL: http://backend:8080
+    networks:
+      - scholarship-network
+    healthcheck:
+      test: ["CMD-SHELL", "ps -ef | grep '[s]cheduler.py' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
   # ====== Frontend Service ======
   frontend:
     build:

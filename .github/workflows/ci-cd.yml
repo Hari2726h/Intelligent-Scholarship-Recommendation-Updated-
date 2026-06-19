@@ -111,6 +111,16 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/scholarship-frontend:latest
             ${{ secrets.DOCKER_USERNAME }}/scholarship-frontend:${{ github.sha }}
 
+      - name: Build and push scraper image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./scholarship-scraper
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/scholarship-scraper:latest
+            ${{ secrets.DOCKER_USERNAME }}/scholarship-scraper:${{ github.sha }}
+
+
   # Code Quality
   code-quality:
     name: Code Quality Analysis
